@@ -1,0 +1,42 @@
+    .signup{
+        display: flex;
+         align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .sign{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgb(234, 236, 236);
+        height: 300px;
+        width: 400px;
+        box-shadow: 5px 10px 15px rgb(153, 151, 151);
+    }
+    h1{
+        font-weight: bold;
+    }
+    input[type="text"],input[type="email"]{
+        padding: 5px;
+        width: 200px;
+        border: none;
+        outline: none;
+        border-bottom: 1px solid rgb(199, 198, 198);
+        margin-bottom: 10px;
+    }
+    button{
+        padding: 5px;
+        width: 100px;
+        background-color: rgb(28, 121, 121);
+        color: white;
+        border: none;
+        outline: none;
+        transition: all 0.2s;
+        margin-top: 10px;
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: rgb(18, 87, 87);
+        transform:scale(1.1)
+    }

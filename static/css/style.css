@@ -1,0 +1,76 @@
+/* CSS for QR Code Attendance Management System */
+body {
+  font-family: sans-serif;
+  line-height: 1.6;
+}
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+h2 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin-right: 1em;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid black;
+  padding: 0.5em;
+}
+th {
+  text-align: center;
+}
+td {
+  text-align: left;
+}
+.container {
+  width: 800px;
+  margin: 0 auto;
+}
+.summary {
+  float: left;
+  width: 50%;
+}
+.attendees {
+  float: right;
+  width: 50%;
+}
+.calendar {
+  clear: both;
+  margin-top: 1em;
+}
+.forms {
+  margin-top: 1em;
+}
+form {
+  display: block;
+  margin-bottom: 1em;
+}
+label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+input {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+}
+button {
+  display: block;
+  margin-top: 0.5em;
+  padding: 0.5em 1em;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Dash.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Admin Dashboard</title>
+ 
+</head>
+<body>
+  <header>
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, Admin!</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/upload">Upload_File</a></li>
+      <li><a href="/view_attendance_files">View_Attendance_File</a></li>
+      <li><a href="#">Attendance Reports</a></li>
+      <li><a href="/user">User Management</a></li>
+    </ul>
+  </nav>
+    <div class=content>
+	<div class=signup>
+	<div class=sign>
+    <form id="attendance-form" action="/generate_qr" method="post" onsubmit="navigateToJavaScript()">
+        <h1>Attendance Form</h1>
+        <table>
+          <tr>
+            <th><label for="name">Emp name:</label></th>
+            <td><input type="text" name="name" id="name" required /></td>
+          </tr>
+          <tr>
+            <th><label for="id">Emp id:</label></th>
+            <td><input type="text" name="id" id="id" required /></td>
+          </tr>
+          <tr>
+            <th><label for="email">Emp email:</label></th>
+            <td><input type="email" name="email" id="email" required /></td>
+          </tr>
+        </table>
+        <button type="submit" id="submit-button">Sign Up</button>
+      </form>
+	</div>
+	</div>
+
+  <input type="text" id="search-input" placeholder="Search by Employee ID">
+  <button id="search-button">Search</button>
+  <table id="employee-table">
+    <!-- Inside the <table> tag -->
+    <tr>
+      <th>S.No</th>
+      <th>NAME</th>
+      <th>Employee ID</th>
+      <th>EMAIL</th>
+      <th>Action</th>
+    </tr>
+    {% for row in employee_data %}
+      <tr data-id="{{ row[0] }}">
+        <td class="serial-number"></td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>
+          <button class="delete-button" data-id_number="{{ row[0] }}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+	<div>
+		
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery -->
+
+<script>
+$(document).ready(function() {
+  // Function to generate and populate serial numbers
+  function updateSerialNumbers() {
+    var serialNumber = 0;
+    $('#employee-table tbody tr').each(function() {
+      $(this).find('.serial-number').text(serialNumber);
+      serialNumber++; // Increment the serial number
+    });
+  }
+
+  // Call the function when the page loads and when a row is deleted
+  updateSerialNumbers();
+
+  // Attach a click event handler to the delete buttons
+  $('.delete-button').click(function() {
+    var rowId = $(this).data('id_number'); // Get the ID from the data attribute
+
+    // Send an AJAX request to the Flask route for deleting data
+    $.ajax({
+      type: 'POST',
+      url: '/delete_employee', // Update the route to handle deletions
+      data: { id_number: rowId }, // Pass the ID of the row to delete
+      success: function(response) {
+        if (response.success) {
+          // Remove the row from the table if deletion was successful
+          $('tr[data-id="' + rowId + '"]').remove();
+          // Update the serial numbers after deletion
+          updateSerialNumbers();
+        } else {
+          alert('Error deleting record.');
+        }
+      },
+      error: function() {
+        alert('Error connecting to the server.');
+      }
+    });
+  });
+
+  // Handle the search functionality
+  $('#search-button').click(function() {
+    var searchValue = $('#search-input').val().trim(); // Get the entered search value
+
+    // Loop through the table rows and hide/show based on the search value
+    $('#employee-table tbody tr').each(function() {
+      var employeeId = $(this).find('td:eq(2)').text(); // Get the employee ID from the row
+
+      // Check if the employee ID contains the search value
+      if (employeeId.includes(searchValue)) {
+        $(this).show(); // Show the row if it matches
+      } else {
+        $(this).hide(); // Hide the row if it doesn't match
+      }
+    });
+
+    // Update serial numbers after filtering
+    updateSerialNumbers();
+  });
+
+  // Reset the table to show all rows when the search input is cleared
+  $('#search-input').on('input', function() {
+    var searchValue = $(this).val().trim();
+
+    if (searchValue === '') {
+      $('#employee-table tbody tr').show(); // Show all rows if the input is empty
+      // Update serial numbers after clearing the search input
+      updateSerialNumbers();
+    }
+  });
+});
+</script>
+</html>

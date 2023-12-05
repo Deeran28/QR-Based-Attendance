@@ -1,0 +1,92 @@
+/* Reset some default styles */
+    body, h1, h2, h3, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f7f8fc;
+      color: #333;
+    }
+	
+    /* Header */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: #444;
+      color: #fff;
+      width: 250px;
+      position: fixed;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 1rem;
+      text-decoration: none;
+      color: #fff;
+      transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+      background-color: #555;
+    }
+
+    /* Content */
+    .content {
+      margin-left: 250px;
+      padding: 2rem;
+    }
+	.signup{
+        display: flex;
+         align-items: center;
+        justify-content: center;
+        height: 80vh;
+    }
+	
+	.sign{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgb(234, 236, 236);
+        height: 300px;
+        width: 400px;
+        box-shadow: 5px 10px 15px rgb(153, 151, 151);
+    }
+	button{
+        padding: 5px;
+        width: 100px;
+        background-color: rgb(28, 121, 121);
+        color: white;
+        border: none;
+        outline: none;
+        transition: all 0.2s;
+        margin-top: 10px;
+    }
+	button:hover{
+        cursor: pointer;
+        background-color: rgb(18, 87, 87);
+        transform:scale(1.1)
+    }
+	table,th,td{
+		border:1px solid black;
+		border-collapse: collapse;

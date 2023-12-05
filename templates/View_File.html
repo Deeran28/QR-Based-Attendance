@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Dash.css') }}">
+    <title>View Attendance Files</title>
+</head>
+<body>
+    <header>
+        <h1>View Attendance Files</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload">Upload_File</a></li>
+            <li><a href="/view_attendance_files">View_Attendance_File</a></li>
+            <li><a href="#">Attendance Reports</a></li>
+            <li><a href="/user">User Management</a></li>
+        </ul>
+    </nav>
+    <div class="content">
+        <h2>Uploaded Attendance Files</h2>
+        <!-- Add this to your HTML file -->
+        <input type="input" id="date" value="eg: Aug-10-2023">
+        <button onclick="fetchFiles()">Show Files</button>
+
+        <div id="fileList"></div>
+
+    </div>
+</body>
+</html>
